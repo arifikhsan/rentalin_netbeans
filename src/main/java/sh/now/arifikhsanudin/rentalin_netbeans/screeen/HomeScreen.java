@@ -12,8 +12,13 @@ import sh.now.arifikhsanudin.rentalin_netbeans.repository.UserRepositoryImpl;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.CarRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.RentalRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.UserRepository;
+import sh.now.arifikhsanudin.rentalin_netbeans.screeen.user.UserScreen;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author arifikhsanudin
@@ -37,6 +42,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRental = new javax.swing.JTable();
@@ -47,6 +53,17 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        buttonUserDelete = new javax.swing.JButton();
+        buttonUserView = new javax.swing.JButton();
+        buttonUserAdd = new javax.swing.JButton();
+        buttonCarAdd = new javax.swing.JButton();
+        buttonCarView = new javax.swing.JButton();
+        buttonCarDelete = new javax.swing.JButton();
+        buttonRentalDelete = new javax.swing.JButton();
+        buttonRentalView = new javax.swing.JButton();
+        buttonRentalAdd = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,62 +72,62 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         labelTitle.setText("Rentalin Admin");
 
         tableRental.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "Nomor", "Nama Penyewa", "Nama Mobil", "Tanggal Sewa", "Tanngal Kembali"
-                }
+            },
+            new String [] {
+                "Nomor", "Nama Penyewa", "Nama Mobil", "Tanggal Sewa", "Tanngal Kembali"
+            }
         ) {
-            Class[] types = new Class[]{
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tableRental);
 
         tableCar.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "Id", "Nama", "Nomor Polisi", "Harga Per Jam"
-                }
+            },
+            new String [] {
+                "Id", "Nama", "Nomor Polisi", "Harga Per Jam"
+            }
         ) {
-            Class[] types = new Class[]{
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tableCar);
 
         tableUser.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "Id", "Nama", "Alamat", "Nomor HP"
-                }
+            },
+            new String [] {
+                "Id", "Nama", "Alamat", "Nomor HP"
+            }
         ) {
-            Class[] types = new Class[]{
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[]{
-                    false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane3.setViewportView(tableUser);
@@ -124,52 +141,145 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         jLabel5.setFont(new java.awt.Font("Gilroy Light", 0, 18)); // NOI18N
         jLabel5.setText("Pelanggan");
 
+        buttonUserDelete.setText("Hapus");
+        buttonUserDelete.setEnabled(false);
+        buttonUserDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserDeleteActionPerformed(evt);
+            }
+        });
+
+        buttonUserView.setText("Lihat");
+        buttonUserView.setEnabled(false);
+
+        buttonUserAdd.setText("Tambah");
+        buttonUserAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUserAddActionPerformed(evt);
+            }
+        });
+
+        buttonCarAdd.setText("Tambah");
+
+        buttonCarView.setText("Lihat");
+        buttonCarView.setEnabled(false);
+
+        buttonCarDelete.setText("Hapus");
+        buttonCarDelete.setEnabled(false);
+        buttonCarDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCarDeleteActionPerformed(evt);
+            }
+        });
+
+        buttonRentalDelete.setText("Hapus");
+        buttonRentalDelete.setEnabled(false);
+        buttonRentalDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRentalDeleteActionPerformed(evt);
+            }
+        });
+
+        buttonRentalView.setText("Lihat");
+        buttonRentalView.setEnabled(false);
+
+        buttonRentalAdd.setText("Tambah");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonRentalAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRentalView)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRentalDelete))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(labelTitle)
-                                                        .addComponent(jLabel2)
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel5)
-                                                .addGap(277, 277, 277))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(labelTitle)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonCarAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCarView)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCarDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addGap(277, 277, 277))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonUserAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonUserView)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonUserDelete))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(labelTitle)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTitle)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(buttonRentalDelete)
+                    .addComponent(buttonRentalView)
+                    .addComponent(buttonRentalAdd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(buttonCarDelete)
+                    .addComponent(buttonCarView)
+                    .addComponent(buttonCarAdd)
+                    .addComponent(buttonUserDelete)
+                    .addComponent(buttonUserView)
+                    .addComponent(buttonUserAdd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonUserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonUserDeleteActionPerformed
+
+    private void buttonCarDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCarDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonCarDeleteActionPerformed
+
+    private void buttonRentalDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRentalDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRentalDeleteActionPerformed
+
+    private void buttonUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAddActionPerformed
+        new UserScreen().setVisible(true);
+    }//GEN-LAST:event_buttonUserAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +316,16 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCarAdd;
+    private javax.swing.JButton buttonCarDelete;
+    private javax.swing.JButton buttonCarView;
+    private javax.swing.JButton buttonRentalAdd;
+    private javax.swing.JButton buttonRentalDelete;
+    private javax.swing.JButton buttonRentalView;
+    private javax.swing.JButton buttonUserAdd;
+    private javax.swing.JButton buttonUserDelete;
+    private javax.swing.JButton buttonUserView;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -227,6 +347,33 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         DefaultTableModel tableModelUser = (DefaultTableModel) tableUser.getModel();
         userRepository.getUsers().forEach(user -> {
             tableModelUser.addRow(new Object[]{user.getId(), user.getName(), user.getAddress(), user.getPhoneNumber()});
+        });
+
+        tableUser.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                System.out.println(tableUser.getValueAt(tableUser.getSelectedRow(), 0));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
         });
 
         DefaultTableModel tableModelCar = (DefaultTableModel) tableCar.getModel();
