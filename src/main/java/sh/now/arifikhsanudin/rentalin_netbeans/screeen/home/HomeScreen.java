@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sh.now.arifikhsanudin.rentalin_netbeans.screeen;
+package sh.now.arifikhsanudin.rentalin_netbeans.screeen.home;
 
 
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.CarRepositoryImpl;
@@ -12,6 +12,7 @@ import sh.now.arifikhsanudin.rentalin_netbeans.repository.UserRepositoryImpl;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.CarRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.RentalRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.UserRepository;
+import sh.now.arifikhsanudin.rentalin_netbeans.screeen.contract.ScreenInterface;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.user.UserScreen;
 
 import javax.swing.*;
@@ -329,7 +330,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
 
     private void buttonUserViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserViewActionPerformed
         Integer userId = Integer.parseInt(tableUser.getValueAt(tableUser.getSelectedRow(), 0).toString());
-        new UserScreen(userId, false).setVisible(true);
+        new UserScreen(userId).setVisible(true);
     }//GEN-LAST:event_buttonUserViewActionPerformed
 
     /**
