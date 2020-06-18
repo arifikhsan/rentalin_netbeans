@@ -163,11 +163,11 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="Nomor" type="java.lang.Integer"/>
-                <Column editable="true" title="Nama Penyewa" type="java.lang.String"/>
-                <Column editable="true" title="Nama Mobil" type="java.lang.String"/>
-                <Column editable="true" title="Tanggal Sewa" type="java.lang.String"/>
-                <Column editable="true" title="Tanngal Kembali" type="java.lang.String"/>
+                <Column editable="false" title="Nomor" type="java.lang.Integer"/>
+                <Column editable="false" title="Nama Penyewa" type="java.lang.String"/>
+                <Column editable="false" title="Nama Mobil" type="java.lang.String"/>
+                <Column editable="false" title="Tanggal Sewa" type="java.lang.String"/>
+                <Column editable="false" title="Tanngal Kembali" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -217,10 +217,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
-                <Column editable="true" title="Id" type="java.lang.Integer"/>
-                <Column editable="true" title="Nama" type="java.lang.String"/>
-                <Column editable="true" title="Nomor Polisi" type="java.lang.String"/>
-                <Column editable="true" title="Harga Per Jam" type="java.lang.Integer"/>
+                <Column editable="false" title="Id" type="java.lang.Integer"/>
+                <Column editable="false" title="Nama" type="java.lang.String"/>
+                <Column editable="false" title="Nomor Polisi" type="java.lang.String"/>
+                <Column editable="false" title="Harga Per Jam" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -356,12 +356,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tambah"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCarAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonCarView">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lihat"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCarViewActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonCarDelete">
       <Properties>
@@ -404,6 +410,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Refresh"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshCarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="refreshRental">
       <Properties>

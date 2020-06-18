@@ -12,6 +12,7 @@ import sh.now.arifikhsanudin.rentalin_netbeans.repository.UserRepositoryImpl;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.CarRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.RentalRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.UserRepository;
+import sh.now.arifikhsanudin.rentalin_netbeans.screeen.car.CarScreen;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.contract.ScreenInterface;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.user.UserScreen;
 
@@ -88,9 +89,16 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tableRental);
@@ -106,9 +114,16 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tableCar);
@@ -171,9 +186,19 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         });
 
         buttonCarAdd.setText("Tambah");
+        buttonCarAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCarAddActionPerformed(evt);
+            }
+        });
 
         buttonCarView.setText("Lihat");
         buttonCarView.setEnabled(false);
+        buttonCarView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCarViewActionPerformed(evt);
+            }
+        });
 
         buttonCarDelete.setText("Hapus");
         buttonCarDelete.setEnabled(false);
@@ -204,6 +229,11 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         });
 
         refreshCar.setText("Refresh");
+        refreshCar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshCarActionPerformed(evt);
+            }
+        });
 
         refreshRental.setText("Refresh");
 
@@ -313,7 +343,12 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     }//GEN-LAST:event_buttonUserDeleteActionPerformed
 
     private void buttonCarDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCarDeleteActionPerformed
-        // TODO add your handling code here:
+        Integer carId = Integer.parseInt(tableCar.getValueAt(tableCar.getSelectedRow(), 0).toString());
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Hapus?","Peringatan", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION){
+            carRepository.delete(carId);
+            populateTableCar();
+        }
     }//GEN-LAST:event_buttonCarDeleteActionPerformed
 
     private void buttonRentalDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRentalDeleteActionPerformed
@@ -332,6 +367,19 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         Integer userId = Integer.parseInt(tableUser.getValueAt(tableUser.getSelectedRow(), 0).toString());
         new UserScreen(userId).setVisible(true);
     }//GEN-LAST:event_buttonUserViewActionPerformed
+
+    private void buttonCarAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCarAddActionPerformed
+        new CarScreen().setVisible(true);
+    }//GEN-LAST:event_buttonCarAddActionPerformed
+
+    private void buttonCarViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCarViewActionPerformed
+        Integer carId = Integer.parseInt(tableCar.getValueAt(tableCar.getSelectedRow(), 0).toString());
+        new CarScreen(carId).setVisible(true);
+    }//GEN-LAST:event_buttonCarViewActionPerformed
+
+    private void refreshCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCarActionPerformed
+        populateTableCar();
+    }//GEN-LAST:event_refreshCarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,11 +488,41 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     }
 
     private void populateTableCar() {
+        buttonCarView.setEnabled(false);
+        buttonCarDelete.setEnabled(false);
 
         DefaultTableModel tableModelCar = (DefaultTableModel) tableCar.getModel();
         tableModelCar.setRowCount(0);
         carRepository.getCars().forEach(car -> {
             tableModelCar.addRow(new Object[]{car.getId(), car.getName(), car.getPoliceNumber(), car.getPricePerHour()});
+        });
+
+        tableCar.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                buttonCarView.setEnabled(true);
+                buttonCarDelete.setEnabled(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
         });
     }
 
