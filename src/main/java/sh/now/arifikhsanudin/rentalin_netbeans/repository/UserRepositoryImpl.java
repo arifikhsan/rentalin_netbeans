@@ -1,12 +1,13 @@
 package sh.now.arifikhsanudin.rentalin_netbeans.repository;
 
 import sh.now.arifikhsanudin.rentalin_netbeans.model.User;
+import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.UserRepository;
 
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserRepositoryImpl implements UserRepositoryInterface {
+public class UserRepositoryImpl implements UserRepository {
     public Connection connection;
     public Statement statement;
     public ResultSet resultSet;

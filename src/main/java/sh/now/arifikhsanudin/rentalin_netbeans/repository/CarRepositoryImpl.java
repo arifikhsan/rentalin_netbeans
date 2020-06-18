@@ -1,12 +1,13 @@
 package sh.now.arifikhsanudin.rentalin_netbeans.repository;
 
 import sh.now.arifikhsanudin.rentalin_netbeans.model.Car;
+import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.CarRepository;
 
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class CarRepositoryImpl implements CarRepositoryInterface {
+public class CarRepositoryImpl implements CarRepository {
     public Connection connection;
     public Statement statement;
     public ResultSet resultSet;

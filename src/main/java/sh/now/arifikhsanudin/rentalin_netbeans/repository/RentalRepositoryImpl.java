@@ -1,14 +1,13 @@
 package sh.now.arifikhsanudin.rentalin_netbeans.repository;
 
-import sh.now.arifikhsanudin.rentalin_netbeans.model.Car;
 import sh.now.arifikhsanudin.rentalin_netbeans.model.Rental;
-import sh.now.arifikhsanudin.rentalin_netbeans.model.User;
+import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.RentalRepository;
 
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class RentalRepositoryImpl implements RentalRepositoryInterface {
+public class RentalRepositoryImpl implements RentalRepository {
     public Connection connection;
     public Statement statement;
     public ResultSet resultSet;
