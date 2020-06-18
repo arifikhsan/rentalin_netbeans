@@ -41,7 +41,6 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             resultSet = statement.executeQuery("SELECT * FROM pengguna WHERE id = " + id);
             if (resultSet.next()) {
-                System.out.println(resultSet.getString("nama"));
                 return new User(resultSet.getInt("id"), resultSet.getString("nama"), resultSet.getString("alamat"), resultSet.getString("nomor_hp"));
             }
         } catch (SQLException e) {
@@ -56,8 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             String query = String.format("INSERT INTO pengguna (`nama`, `alamat`, `nomor_hp`) " +
                     "VALUES ('%s', '%s', '%s')", user.getName(), user.getAddress(), user.getPhoneNumber());
-            int a = statement.executeUpdate(query);
-            System.out.println(a);
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -66,7 +64,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void update(User user) {
-
+        try {
+            String query = String.format("UPDATE `pengguna` SET " +
+                    "`nama` = '%s', `alamat` = '%s', `nomor_hp` = '%s' " +
+                    "WHERE id = %d", user.getName(), user.getAddress(), user.getPhoneNumber(), user.getId());
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
