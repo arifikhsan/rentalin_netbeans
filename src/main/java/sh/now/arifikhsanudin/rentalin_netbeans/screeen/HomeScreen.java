@@ -5,10 +5,7 @@
  */
 package sh.now.arifikhsanudin.rentalin_netbeans.screeen;
 
-import sh.now.arifikhsanudin.rentalin_netbeans.repository.CarRepositoryImpl;
-import sh.now.arifikhsanudin.rentalin_netbeans.repository.CarRepositoryInterface;
-import sh.now.arifikhsanudin.rentalin_netbeans.repository.UserRepositoryImpl;
-import sh.now.arifikhsanudin.rentalin_netbeans.repository.UserRepositoryInterface;
+import sh.now.arifikhsanudin.rentalin_netbeans.repository.*;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -218,6 +215,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     public void populateView() {
         UserRepositoryInterface userRepository = new UserRepositoryImpl();
         CarRepositoryInterface carRepository = new CarRepositoryImpl();
+        RentalRepositoryInterface rentalRepository = new RentalRepositoryImpl();
 
         DefaultTableModel tableModelUser = (DefaultTableModel) tableUser.getModel();
         userRepository.getUsers().forEach(user -> {
@@ -227,6 +225,11 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         DefaultTableModel tableModelCar = (DefaultTableModel) tableCar.getModel();
         carRepository.getCars().forEach(car -> {
             tableModelCar.addRow(new Object[]{car.getId(), car.getName(), car.getPoliceNumber(), car.getPricePerHour()});
+        });
+
+        DefaultTableModel rentalModelCar = (DefaultTableModel) tableRental.getModel();
+        rentalRepository.getRentals().forEach(rental -> {
+            rentalModelCar.addRow(new Object[]{rental.getId(), rental.getCarName(), rental.getUserName(), rental.getDateBorrow(), rental.getDateReturn()});
         });
 
     }
