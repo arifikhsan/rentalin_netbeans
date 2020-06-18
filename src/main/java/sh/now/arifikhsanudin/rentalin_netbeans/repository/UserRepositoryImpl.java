@@ -35,4 +35,48 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return list;
     }
+
+    @Override
+    public User getOne(Integer id) {
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM pengguna WHERE id = " + id);
+            if (resultSet.next()) {
+                System.out.println(resultSet.getString("nama"));
+                return new User(resultSet.getInt("id"), resultSet.getString("nama"), resultSet.getString("alamat"), resultSet.getString("nomor_hp"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
+    public void add(User user) {
+        try {
+            String query = String.format("INSERT INTO pengguna (`nama`, `alamat`, `nomor_hp`) " +
+                    "VALUES ('%s', '%s', '%s')", user.getName(), user.getAddress(), user.getPhoneNumber());
+            int a = statement.executeUpdate(query);
+            System.out.println(a);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void update(User user) {
+
+    }
+
+    @Override
+    public void delete(Integer id) {
+        try {
+            String query = String.format("DELETE FROM pengguna WHERE id = %d", id);
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 }
