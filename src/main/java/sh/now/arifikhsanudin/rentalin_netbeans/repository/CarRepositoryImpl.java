@@ -1,7 +1,6 @@
 package sh.now.arifikhsanudin.rentalin_netbeans.repository;
 
 import sh.now.arifikhsanudin.rentalin_netbeans.model.Car;
-import sh.now.arifikhsanudin.rentalin_netbeans.model.User;
 
 import javax.swing.*;
 import java.sql.*;
