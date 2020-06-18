@@ -5,10 +5,14 @@
  */
 package sh.now.arifikhsanudin.rentalin_netbeans;
 
+import sh.now.arifikhsanudin.rentalin_netbeans.screeen.HomeScreen;
+
 /**
  *
  * @author arifikhsanudin
  */
 public class Main {
-    
+//    public void init() {
+//        new HomeScreen().setVisible(true);
+//    }
 }
