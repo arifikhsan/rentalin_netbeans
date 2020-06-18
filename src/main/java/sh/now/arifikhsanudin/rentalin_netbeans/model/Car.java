@@ -15,6 +15,12 @@ public class Car {
         this.name = name;
     }
 
+    public Car(String name, String policeNumber, Integer pricePerHour) {
+        this.name = name;
+        this.policeNumber = policeNumber;
+        this.pricePerHour = pricePerHour;
+    }
+
     public Car(Integer id, String name, String policeNumber, Integer pricePerHour) {
         this.id = id;
         this.name = name;
