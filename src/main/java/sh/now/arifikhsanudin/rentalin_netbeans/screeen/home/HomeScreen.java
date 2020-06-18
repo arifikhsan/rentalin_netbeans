@@ -14,6 +14,7 @@ import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.RentalReposit
 import sh.now.arifikhsanudin.rentalin_netbeans.repository.contract.UserRepository;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.car.CarScreen;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.contract.ScreenInterface;
+import sh.now.arifikhsanudin.rentalin_netbeans.screeen.rental.RentalScreen;
 import sh.now.arifikhsanudin.rentalin_netbeans.screeen.user.UserScreen;
 
 import javax.swing.*;
@@ -69,6 +70,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         refreshUser = new javax.swing.JButton();
         refreshCar = new javax.swing.JButton();
         refreshRental = new javax.swing.JButton();
+        refreshAll = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -83,7 +85,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
 
             },
             new String [] {
-                "Nomor", "Nama Penyewa", "Nama Mobil", "Tanggal Sewa", "Tanngal Kembali"
+                "Id", "Nama Penyewa", "Nama Mobil", "Tanggal Sewa", "Tanngal Kembali"
             }
         ) {
             Class[] types = new Class [] {
@@ -218,8 +220,18 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
 
         buttonRentalView.setText("Lihat");
         buttonRentalView.setEnabled(false);
+        buttonRentalView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRentalViewActionPerformed(evt);
+            }
+        });
 
         buttonRentalAdd.setText("Tambah");
+        buttonRentalAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRentalAddActionPerformed(evt);
+            }
+        });
 
         refreshUser.setText("Refresh");
         refreshUser.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +248,18 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
         });
 
         refreshRental.setText("Refresh");
+        refreshRental.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshRentalActionPerformed(evt);
+            }
+        });
+
+        refreshAll.setText("Refresh Semua");
+        refreshAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshAllActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +273,10 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(refreshAll)
+                                .addGap(25, 25, 25)
+                                .addComponent(refreshRental)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonRentalAdd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonRentalView)
@@ -286,10 +314,6 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(refreshUser))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshRental)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,12 +325,12 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
                     .addComponent(jLabel2)
                     .addComponent(buttonRentalDelete)
                     .addComponent(buttonRentalView)
-                    .addComponent(buttonRentalAdd))
+                    .addComponent(buttonRentalAdd)
+                    .addComponent(refreshAll)
+                    .addComponent(refreshRental))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(refreshRental)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
@@ -321,13 +345,12 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshCar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(refreshCar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshUser)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(refreshUser)))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -352,7 +375,12 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     }//GEN-LAST:event_buttonCarDeleteActionPerformed
 
     private void buttonRentalDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRentalDeleteActionPerformed
-        // TODO add your handling code here:
+        Integer rentalId = Integer.parseInt(tableRental.getValueAt(tableRental.getSelectedRow(), 0).toString());
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Hapus?","Peringatan", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION){
+            rentalRepository.delete(rentalId);
+            populateTableRental();
+        }
     }//GEN-LAST:event_buttonRentalDeleteActionPerformed
 
     private void buttonUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserAddActionPerformed
@@ -380,6 +408,23 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     private void refreshCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCarActionPerformed
         populateTableCar();
     }//GEN-LAST:event_refreshCarActionPerformed
+
+    private void refreshAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshAllActionPerformed
+        populateView();
+    }//GEN-LAST:event_refreshAllActionPerformed
+
+    private void refreshRentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshRentalActionPerformed
+        populateTableRental();
+    }//GEN-LAST:event_refreshRentalActionPerformed
+
+    private void buttonRentalAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRentalAddActionPerformed
+        new RentalScreen().setVisible(true);
+    }//GEN-LAST:event_buttonRentalAddActionPerformed
+
+    private void buttonRentalViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRentalViewActionPerformed
+        Integer rentalId = Integer.parseInt(tableRental.getValueAt(tableRental.getSelectedRow(), 0).toString());
+        new RentalScreen(rentalId).setVisible(true);
+    }//GEN-LAST:event_buttonRentalViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +478,7 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelTitle;
+    private javax.swing.JButton refreshAll;
     private javax.swing.JButton refreshCar;
     private javax.swing.JButton refreshRental;
     private javax.swing.JButton refreshUser;
@@ -527,11 +573,41 @@ public class HomeScreen extends javax.swing.JFrame implements ScreenInterface {
     }
 
     private void populateTableRental() {
+        buttonRentalView.setEnabled(false);
+        buttonRentalDelete.setEnabled(false);
 
         DefaultTableModel rentalModelCar = (DefaultTableModel) tableRental.getModel();
         rentalModelCar.setRowCount(0);
         rentalRepository.getRentals().forEach(rental -> {
-            rentalModelCar.addRow(new Object[]{rental.getId(), rental.getCarName(), rental.getUserName(), rental.getDateBorrow(), rental.getDateReturn()});
+            rentalModelCar.addRow(new Object[]{rental.getId(), rental.car.getName(), rental.user.getName(), rental.getDateBorrow(), rental.getDateReturn()});
+        });
+        
+        tableRental.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                buttonRentalView.setEnabled(true);
+                buttonRentalDelete.setEnabled(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
         });
     }
 }

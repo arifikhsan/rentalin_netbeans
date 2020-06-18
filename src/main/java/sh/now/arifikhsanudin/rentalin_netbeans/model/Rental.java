@@ -2,15 +2,22 @@ package sh.now.arifikhsanudin.rentalin_netbeans.model;
 
 public class Rental {
     public Integer id;
-    public String carName;
-    public String userName;
+    public Car car;
+    public User user;
     public String dateBorrow;
     public String dateReturn;
 
-    public Rental(Integer id, String carName, String userName, String dateBorrow, String dateReturn) {
+    public Rental(Car car, User user, String dateBorrow, String dateReturn) {
+        this.car = car;
+        this.user = user;
+        this.dateBorrow = dateBorrow;
+        this.dateReturn = dateReturn;
+    }
+
+    public Rental(Integer id, Car car, User user, String dateBorrow, String dateReturn) {
         this.id = id;
-        this.carName = carName;
-        this.userName = userName;
+        this.car = car;
+        this.user = user;
         this.dateBorrow = dateBorrow;
         this.dateReturn = dateReturn;
     }
@@ -23,20 +30,20 @@ public class Rental {
         this.id = id;
     }
 
-    public String getCarName() {
-        return carName;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarName(String carName) {
-        this.carName = carName;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
-    public String getUserName() {
-        return userName;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDateBorrow() {
@@ -59,8 +66,8 @@ public class Rental {
     public String toString() {
         return "Rental{" +
                 "id=" + id +
-                ", carName='" + carName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", car=" + car.toString() +
+                ", user=" + user.toString() +
                 ", dateBorrow='" + dateBorrow + '\'' +
                 ", dateReturn='" + dateReturn + '\'' +
                 '}';

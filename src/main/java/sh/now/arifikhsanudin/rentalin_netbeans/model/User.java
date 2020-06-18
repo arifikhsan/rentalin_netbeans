@@ -6,6 +6,15 @@ public class User {
     public String address;
     public String phoneNumber;
 
+    public User(Integer id) {
+        this.id = id;
+    }
+
+    public User(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public User(Integer id, String name, String address, String phoneNumber) {
         this.id = id;
         this.name = name;

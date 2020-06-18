@@ -6,4 +6,12 @@ import java.util.ArrayList;
 
 public interface RentalRepository {
     ArrayList<Rental> getRentals();
+
+    Rental getOne(Integer id);
+
+    void add(Rental rental);
+
+    void update(Rental rental);
+
+    void delete(Integer id);
 }
